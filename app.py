@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 import os
 app.config.from_object(os.environ['APP_SETTINGS'])
+print("AAAAA")
 # app.config.from_object('config.DevelopmentConfig')
 # app.secret_key = "my key"
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
@@ -58,5 +59,5 @@ def logout():
 # def connect_db():
 #     return sqlite3.connect('posts.db')
 
-# if __name__ == '__main__':
-    # app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=False)
