@@ -1,12 +1,19 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash, g
+from flask import Flask, render_template, redirect, url_for, request, session, flash
 from functools import wraps
-import sqlite3
+from flask_sqlalchemy import SQLAlchemy
+# import sqlite3
 
 app = Flask(__name__)
 
+import os
+app.config.from_object(os.environ['APP_SETTINGS'])
+# app.config.from_object('config.DevelopmentConfig')
+# app.secret_key = "my key"
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 
-app.secret_key = 'my key'
-app.database = 'sample.db'
+db = SQLAlchemy(app)
+
+from models import *
 
 def login_required(func):
     @wraps(func)
@@ -21,10 +28,7 @@ def login_required(func):
 @app.route('/')
 @login_required
 def home():
-    g.db = connect_db() #q stores temporty objects; this value is reset after each request
-    cur =  g.db.execute('select * from posts')
-    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
-    g.db.close()
+    posts = db.session.query(BlogPost).all()
     return render_template('index.html', posts=posts)
 
 @app.route('/welcome')
@@ -51,8 +55,8 @@ def logout():
     flash('You were just logged out')
     return redirect(url_for('welcome'))
 
-def connect_db():
-    return sqlite3.connect(app.database)
+# def connect_db():
+#     return sqlite3.connect('posts.db')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+    # app.run(debug=True)
