@@ -1,4 +1,5 @@
 from app import db
+from project.users.views import bcrypt
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -28,7 +29,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-    password = db.Column(db.String)
+    password = db.Column(db.String, nullable=False)
     posts = relationship("BlogPost", backref="author")
 
     def __init__(self, name, email, password):
