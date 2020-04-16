@@ -4,21 +4,21 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 # import sqlite3
 
-app = Flask(__name__)
-bcrypt = Bcrypt(app)
+# app = Flask(__name__)
+# bcrypt = Bcrypt(app)
 
-import os
-app.config.from_object(os.environ['APP_SETTINGS'])
+# import os
+# app.config.from_object(os.environ['APP_SETTINGS'])
 # app.config.from_object('config.DevelopmentConfig')
 # app.secret_key = "my key"
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
-from models import *
-from project.users.views import users_blueprint
+# from models import *
+# from project.users.views import users_blueprint
 
-app.register_blueprint(users_blueprint)
+# app.register_blueprint(users_blueprint)
 
 def login_required(func):
     @wraps(func)
@@ -62,6 +62,3 @@ def welcome():
 
 # def connect_db():
 #     return sqlite3.connect('posts.db')
-
-if __name__ == '__main__':
-    app.run()

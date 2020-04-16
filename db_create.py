@@ -1,6 +1,6 @@
-from app import db
+from project import db
 
-from models import BlogPost
+from project.models import BlogPost
 
 db.create_all()
 
