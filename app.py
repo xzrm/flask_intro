@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
-from functools import wraps
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+# from flask import Flask, render_template, redirect, url_for, request, session, flash
+# from functools import wraps
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_bcrypt import Bcrypt
 # import sqlite3
 
 # app = Flask(__name__)
@@ -20,25 +20,25 @@ from flask_bcrypt import Bcrypt
 
 # app.register_blueprint(users_blueprint)
 
-def login_required(func):
-    @wraps(func)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return func(*args, **kwargs)
-        else:
-            flash('You need to log in first.')
-            return redirect(url_for('users.login'))
-    return wrap
+# def login_required(func):
+#     @wraps(func)
+#     def wrap(*args, **kwargs):
+#         if 'logged_in' in session:
+#             return func(*args, **kwargs)
+#         else:
+#             flash('You need to log in first.')
+#             return redirect(url_for('users.login'))
+#     return wrap
 
-@app.route('/')
-@login_required
-def home():
-    posts = db.session.query(BlogPost).all()
-    return render_template('index.html', posts=posts)
+# @app.route('/')
+# @login_required
+# def home():
+#     posts = db.session.query(BlogPost).all()
+#     return render_template('index.html', posts=posts)
 
-@app.route('/welcome')
-def welcome():
-    return render_template('welcome.html')
+# @app.route('/welcome')
+# def welcome():
+#     return render_template('welcome.html')
 
 
 # @app.route('/login', methods=['GET', 'POST'])
