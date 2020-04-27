@@ -3,4 +3,5 @@ pipfile.lock
 coverage
 *.db
 .vscode
+__pycache__/
 
