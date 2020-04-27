@@ -1,7 +1,5 @@
-pipfile
-pipfile.lock
 coverage
 *.db
 .vscode
-__pycache__/
+__pycache__
 
