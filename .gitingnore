@@ -1,2 +1,4 @@
 pipfile
 pipfile.lock
+coverage
+*.db
