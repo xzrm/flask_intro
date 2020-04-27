@@ -2,3 +2,5 @@ pipfile
 pipfile.lock
 coverage
 *.db
+.vscode
+
